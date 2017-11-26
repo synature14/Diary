@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		988C2CBD1FCA898900BA8032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CBC1FCA898900BA8032 /* AppDelegate.swift */; };
-		988C2CBF1FCA898900BA8032 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CBE1FCA898900BA8032 /* ViewController.swift */; };
 		988C2CC21FCA898900BA8032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC01FCA898900BA8032 /* Main.storyboard */; };
 		988C2CC41FCA898900BA8032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC31FCA898900BA8032 /* Assets.xcassets */; };
 		988C2CC71FCA898900BA8032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */; };
 		988C2CD21FCA898900BA8032 /* DailyDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CD11FCA898900BA8032 /* DailyDiaryTests.swift */; };
 		988C2CDD1FCA898900BA8032 /* DailyDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CDC1FCA898900BA8032 /* DailyDiaryUITests.swift */; };
+		988C2CEE1FCA8ECA00BA8032 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CED1FCA8ECA00BA8032 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		988C2CB91FCA898900BA8032 /* DailyDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		988C2CBC1FCA898900BA8032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		988C2CBE1FCA898900BA8032 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		988C2CC11FCA898900BA8032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		988C2CC31FCA898900BA8032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		988C2CC61FCA898900BA8032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		988C2CD81FCA898900BA8032 /* DailyDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		988C2CDC1FCA898900BA8032 /* DailyDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDiaryUITests.swift; sourceTree = "<group>"; };
 		988C2CDE1FCA898900BA8032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		988C2CED1FCA8ECA00BA8032 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,8 @@
 		988C2CBB1FCA898900BA8032 /* DailyDiary */ = {
 			isa = PBXGroup;
 			children = (
+				988C2CEA1FCA8E6400BA8032 /* Login */,
 				988C2CBC1FCA898900BA8032 /* AppDelegate.swift */,
-				988C2CBE1FCA898900BA8032 /* ViewController.swift */,
 				988C2CC01FCA898900BA8032 /* Main.storyboard */,
 				988C2CC31FCA898900BA8032 /* Assets.xcassets */,
 				988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */,
@@ -123,6 +123,14 @@
 				988C2CDE1FCA898900BA8032 /* Info.plist */,
 			);
 			path = DailyDiaryUITests;
+			sourceTree = "<group>";
+		};
+		988C2CEA1FCA8E6400BA8032 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				988C2CED1FCA8ECA00BA8032 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				988C2CBF1FCA898900BA8032 /* ViewController.swift in Sources */,
+				988C2CEE1FCA8ECA00BA8032 /* LoginViewController.swift in Sources */,
 				988C2CBD1FCA898900BA8032 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
