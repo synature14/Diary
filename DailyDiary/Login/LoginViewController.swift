@@ -10,6 +10,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var idTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +24,18 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func clickedLoginButton(_ sender: Any) {
+        let id = idTextField.text!
+        let password = passwordTextField.text!
+        
+        if id == "sutie", password == "1234" {
+            print("login success")
+        } else {
+            print("login fail")
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 
