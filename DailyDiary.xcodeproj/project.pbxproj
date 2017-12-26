@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		988C2CBD1FCA898900BA8032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CBC1FCA898900BA8032 /* AppDelegate.swift */; };
-		988C2CC21FCA898900BA8032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC01FCA898900BA8032 /* Main.storyboard */; };
 		988C2CC41FCA898900BA8032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC31FCA898900BA8032 /* Assets.xcassets */; };
 		988C2CC71FCA898900BA8032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */; };
 		988C2CD21FCA898900BA8032 /* DailyDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CD11FCA898900BA8032 /* DailyDiaryTests.swift */; };
 		988C2CDD1FCA898900BA8032 /* DailyDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CDC1FCA898900BA8032 /* DailyDiaryUITests.swift */; };
 		988C2CEE1FCA8ECA00BA8032 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CED1FCA8ECA00BA8032 /* LoginViewController.swift */; };
+		98AE5BC21FF2353B00C3CC5B /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98AE5BC11FF2353B00C3CC5B /* AlamofireImage.framework */; };
+		98AE5BC31FF2353B00C3CC5B /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98AE5BC11FF2353B00C3CC5B /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98C366B31FE6AD1C007F04BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C366B21FE6AD1C007F04BE /* Main.storyboard */; };
+		98C366B71FE6B59D007F04BE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C366B61FE6B59D007F04BE /* TableViewCell.swift */; };
+		98CBE6E91FE513E500C791B1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CBE6E81FE513E500C791B1 /* Alamofire.framework */; };
+		98CBE6EA1FE513E500C791B1 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98CBE6E81FE513E500C791B1 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98CBE6EF1FE659A100C791B1 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CBE6EE1FE659A100C791B1 /* SwiftyJSON.framework */; };
+		98CBE6F01FE659A100C791B1 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98CBE6EE1FE659A100C791B1 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +40,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		98CBE6EB1FE513E500C791B1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				98AE5BC31FF2353B00C3CC5B /* AlamofireImage.framework in Embed Frameworks */,
+				98CBE6F01FE659A100C791B1 /* SwiftyJSON.framework in Embed Frameworks */,
+				98CBE6EA1FE513E500C791B1 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		988C2CB91FCA898900BA8032 /* DailyDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		988C2CBC1FCA898900BA8032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		988C2CC11FCA898900BA8032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		988C2CC31FCA898900BA8032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		988C2CC61FCA898900BA8032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		988C2CC81FCA898900BA8032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +69,11 @@
 		988C2CDC1FCA898900BA8032 /* DailyDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDiaryUITests.swift; sourceTree = "<group>"; };
 		988C2CDE1FCA898900BA8032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		988C2CED1FCA8ECA00BA8032 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		98AE5BC11FF2353B00C3CC5B /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		98C366B21FE6AD1C007F04BE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		98C366B61FE6B59D007F04BE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		98CBE6E81FE513E500C791B1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		98CBE6EE1FE659A100C791B1 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98AE5BC21FF2353B00C3CC5B /* AlamofireImage.framework in Frameworks */,
+				98CBE6EF1FE659A100C791B1 /* SwiftyJSON.framework in Frameworks */,
+				98CBE6E91FE513E500C791B1 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +107,9 @@
 		988C2CB01FCA898900BA8032 = {
 			isa = PBXGroup;
 			children = (
+				98AE5BC11FF2353B00C3CC5B /* AlamofireImage.framework */,
+				98CBE6EE1FE659A100C791B1 /* SwiftyJSON.framework */,
+				98CBE6E81FE513E500C791B1 /* Alamofire.framework */,
 				988C2CBB1FCA898900BA8032 /* DailyDiary */,
 				988C2CD01FCA898900BA8032 /* DailyDiaryTests */,
 				988C2CDB1FCA898900BA8032 /* DailyDiaryUITests */,
@@ -99,7 +132,8 @@
 			children = (
 				988C2CEA1FCA8E6400BA8032 /* Login */,
 				988C2CBC1FCA898900BA8032 /* AppDelegate.swift */,
-				988C2CC01FCA898900BA8032 /* Main.storyboard */,
+				98C366B61FE6B59D007F04BE /* TableViewCell.swift */,
+				98C366B21FE6AD1C007F04BE /* Main.storyboard */,
 				988C2CC31FCA898900BA8032 /* Assets.xcassets */,
 				988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */,
 				988C2CC81FCA898900BA8032 /* Info.plist */,
@@ -143,6 +177,7 @@
 				988C2CB51FCA898900BA8032 /* Sources */,
 				988C2CB61FCA898900BA8032 /* Frameworks */,
 				988C2CB71FCA898900BA8032 /* Resources */,
+				98CBE6EB1FE513E500C791B1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,9 +275,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C366B31FE6AD1C007F04BE /* Main.storyboard in Resources */,
 				988C2CC71FCA898900BA8032 /* LaunchScreen.storyboard in Resources */,
 				988C2CC41FCA898900BA8032 /* Assets.xcassets in Resources */,
-				988C2CC21FCA898900BA8032 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C366B71FE6B59D007F04BE /* TableViewCell.swift in Sources */,
 				988C2CEE1FCA8ECA00BA8032 /* LoginViewController.swift in Sources */,
 				988C2CBD1FCA898900BA8032 /* AppDelegate.swift in Sources */,
 			);
@@ -304,14 +340,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		988C2CC01FCA898900BA8032 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				988C2CC11FCA898900BA8032 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -435,6 +463,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DailyDiary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DailyDiary.DailyDiary;
@@ -449,6 +481,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DailyDiary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DailyDiary.DailyDiary;
