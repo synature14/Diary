@@ -65,15 +65,6 @@ class LoginViewController: UIViewController {
                     self!.items.append(p)
                     //                    let indexPath = IndexPath(row: self!.items.count - 1, section: 0)
                     
-                    
-                    let radius: CGFloat = 10.0
-                    let size = CGSize(width: 10.0, height: 10.0)
-                    
-                    let roundedImage = image.af_imageRounded(withCornerRadius: radius)
-                    let circulrImage = image.af_imageRoundedIntoCircle()
-                    // Scale image to fit within specified size while maintaining aspect ratio
-                    let aspectScaledToFitImage = image.af_imageAspectScaled(toFit: size)
-                    
                     print("case success")
                     
                     
@@ -129,20 +120,20 @@ extension LoginViewController: UITableViewDataSource{
         
         //이미지 url
         let url = URL(string: items[indexPath.row].picture)
+        //url에서 가져온 데이터!!
+        let picData = try! Data(contentsOf: url!)
+        let image = UIImage(data: picData)!
         
-        cell.pictureView.af_setImage(withURL: url!)
+       // cell.pictureView.af_setImage(withURL: url!)
         
-        let image = cell.pictureView as! UIImage
-        let radius: CGFloat = 10.0
-        let size = CGSize(width: 10.0, height: 10.0)
+        let radius: CGFloat = 50.0
+        let size = CGSize(width: 100.0, height: 100.0)
         
-        // Scale image to fit within specified size while maintaining aspect ratio
         let aspectScaledToFitImage = image.af_imageAspectScaled(toFit: size)
+        let roundedImage = aspectScaledToFitImage.af_imageRounded(withCornerRadius: radius)
         
-        let roundedImage = image.af_imageRounded(withCornerRadius: radius)
-        let circularImage = image.af_imageRoundedIntoCircle()
+        cell.pictureView.image = roundedImage.af_imageRoundedIntoCircle()
         
-
         return cell
     }
     
