@@ -17,9 +17,7 @@ class LoginViewController: UIViewController {
     var items: [ProfileList] = []
     
     @IBOutlet weak var tableView: UITableView!
-    
-//    private var selectedIndexPath : IndexPath?
-//
+
     func requestImage(path: String, completionHandler: @escaping (Image) -> Void){
         Alamofire.request("\(path)").responseImage(imageScale: 1.5, inflateResponseImage: false, completionHandler: {response in
             guard let image = response.result.value else{
@@ -31,26 +29,7 @@ class LoginViewController: UIViewController {
             }
         })
     }
-////
-//    func parseImage(url: String) -> UIImage {
-//        Alamofire.request("\(url)").responseImage(imageScale: 1.5, inflateResponseImage: false, completionHandler: { response in
-//            debugPrint(response)
-//
-//            debugPrint(response.result)
-//
-//            if let image: UIImage = response.result.value{
-//                print("image downloaded : \(image)")
-//
-//            }
-//            DispatchQueue.main.async {
-//                completionHandler(image)
-//            }
-//        })
-//
-//
-//    }
 
-    
     @IBAction func addButtonTapped(_ sender: Any) {
         Alamofire.request("https://randomuser.me/api/", method: .get)
             .validate().responseJSON(completionHandler: {
@@ -63,7 +42,6 @@ class LoginViewController: UIViewController {
                     let json = JSON(value)
                     let p = ProfileList(jsonProfile: json)
                     self!.items.append(p)
-                    //                    let indexPath = IndexPath(row: self!.items.count - 1, section: 0)
                     
                     print("case success")
                     
@@ -74,7 +52,6 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         self!.tableView.reloadData()
                     }
-                    //                    self!.tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     
                     print(json)
                     
@@ -109,32 +86,40 @@ extension LoginViewController: UITableViewDataSource{
         return items.count
     }
     
+    
+    // TableView와 TableViewCell간의 강한 커플링 문제 해결
+    func releaseCoupling(tbView: UITableView, indexPathAtRow: IndexPath) -> TableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! TableViewCell
+       
+        cell.userNameLabel.text = items[indexPathAtRow.row].username
+        cell.phoneLabel.text = items[indexPathAtRow.row].phone
+        
+        //이미지 url
+        let url: URL? = URL(string: items[indexPathAtRow.row].picture)
+        //url에서 가져온 데이터!!
+        let picData = try? Data(contentsOf: url!)
+        let image: UIImage? = UIImage(data: picData!)
+        
+        // cell.pictureView.af_setImage(withURL: url!)
+        
+        let radius: CGFloat = 50.0
+        let size = CGSize(width: 100.0, height: 100.0)
+        
+        let aspectScaledToFitImage = image?.af_imageAspectScaled(toFit: size)
+        let roundedImage = aspectScaledToFitImage?.af_imageRounded(withCornerRadius: radius)
+        
+        cell.pictureView.image = roundedImage?.af_imageRoundedIntoCircle()
+        
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         // 커플링 발생. 클래스와 클래스가 굉장히 강하게 결합되어있다. TableViewCell이 cell의 타입이 무엇인지 정확히 알고 있고 cell의 프로퍼티, 어떤 데이터가 들어가 있는지 너무 정확하게 알고있다. --> ViewCell이 여러개라면? 하나하나 다 추가해줘야 한다. 코드가 너무 길어진다.
         // 클래스와 클래스 사이는 '추상화'를 통해서 데이터가 오고 가야한다. --> 프로토콜을 하나 만들어서 싱위클래스 상속받게 만들어서 다른 외부 클래스는 프로토콜을 이용해서만 데이터 접근하게 만든다!
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! TableViewCell
-        cell.userNameLabel.text = items[indexPath.row].username
-        cell.phoneLabel.text = items[indexPath.row].phone
-        
-        //이미지 url
-        let url = URL(string: items[indexPath.row].picture)
-        //url에서 가져온 데이터!!
-        let picData = try! Data(contentsOf: url!)
-        let image = UIImage(data: picData)!
-        
-       // cell.pictureView.af_setImage(withURL: url!)
-        
-        let radius: CGFloat = 50.0
-        let size = CGSize(width: 100.0, height: 100.0)
-        
-        let aspectScaledToFitImage = image.af_imageAspectScaled(toFit: size)
-        let roundedImage = aspectScaledToFitImage.af_imageRounded(withCornerRadius: radius)
-        
-        cell.pictureView.image = roundedImage.af_imageRoundedIntoCircle()
-        
-        return cell
+        //따라서 메소드(여기선, releaseCoupling()) 를 통해 cell접근하도록 해결
+        return releaseCoupling(tbView: tableView, indexPathAtRow: indexPath)
     }
     
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
