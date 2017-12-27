@@ -15,6 +15,7 @@ class ProfileList {
     var id: String = ""
     var picture: String = ""
     var gender: String = ""
+    var location: String = ""
     
     init(jsonProfile: JSON) {
         username = jsonProfile["results"][0]["login"]["username"].rawString()!
@@ -22,6 +23,7 @@ class ProfileList {
         id = jsonProfile["results"][0]["id"]["value"].rawString()!
         picture = jsonProfile["results"][0]["picture"]["medium"].rawString()!
         gender = jsonProfile["results"][0]["gender"].rawString()!
+        location = jsonProfile["results"][0]["location"]["state"].rawString()!
     }
 }
 
@@ -44,6 +46,28 @@ class TableViewCell: UITableViewCell{
     @IBOutlet weak var pictureView: UIImageView!
     
  
+    // TableView와 TableViewCell간의 강한 커플링 문제 해결
+    func setModel(tbView: UITableView, userInfo: ProfileList){
+        userNameLabel.text = userInfo.username
+        phoneLabel.text = userInfo.phone
+        
+        //이미지 url를 옵셔널 바인딩으로 cell에 이미지 띄운다
+        if let url = URL(string: userInfo.picture){
+            //url에서 가져온 데이터!!
+            if let picData = try? Data(contentsOf: url){
+                if let image = UIImage(data: picData){
+                    let radius: CGFloat = 50.0
+                    let size = CGSize(width: 100.0, height: 100.0)
+                    
+                    let aspectScaledToFitImage = image.af_imageAspectScaled(toFit: size)
+                    let roundedImage = aspectScaledToFitImage.af_imageRounded(withCornerRadius: radius)
+                    
+                    pictureView.image = roundedImage.af_imageRoundedIntoCircle()
+                }
+            }
+        }
+        
+    }
     
     
     

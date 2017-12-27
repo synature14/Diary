@@ -18,17 +18,17 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    func requestImage(path: String, completionHandler: @escaping (Image) -> Void){
-        Alamofire.request("\(path)").responseImage(imageScale: 1.5, inflateResponseImage: false, completionHandler: {response in
-            guard let image = response.result.value else{
-                print(response.result)
-                return
-            }
-            DispatchQueue.main.async {
-                completionHandler(image)
-            }
-        })
-    }
+//    func requestImage(path: String, completionHandler: @escaping (Image) -> Void){
+//        Alamofire.request("\(path)").responseImage(imageScale: 1.5, inflateResponseImage: false, completionHandler: {response in
+//            guard let image = response.result.value else{
+//                print(response.result)
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                completionHandler(image)
+//            }
+//        })
+//    }
 
     @IBAction func addButtonTapped(_ sender: Any) {
         Alamofire.request("https://randomuser.me/api/", method: .get)
@@ -87,40 +87,18 @@ extension LoginViewController: UITableViewDataSource{
     }
     
     
-    // TableView와 TableViewCell간의 강한 커플링 문제 해결
-    func releaseCoupling(tbView: UITableView, indexPathAtRow: IndexPath) -> TableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! TableViewCell
-       
-        cell.userNameLabel.text = items[indexPathAtRow.row].username
-        cell.phoneLabel.text = items[indexPathAtRow.row].phone
-        
-        //이미지 url를 옵셔널 바인딩으로 cell에 이미지 띄운다
-        if let url = URL(string: items[indexPathAtRow.row].picture){
-            //url에서 가져온 데이터!!
-            if let picData = try? Data(contentsOf: url){
-                if let image = UIImage(data: picData){
-                    let radius: CGFloat = 50.0
-                    let size = CGSize(width: 100.0, height: 100.0)
-                    
-                    let aspectScaledToFitImage = image.af_imageAspectScaled(toFit: size)
-                    let roundedImage = aspectScaledToFitImage.af_imageRounded(withCornerRadius: radius)
-                    
-                    cell.pictureView.image = roundedImage.af_imageRoundedIntoCircle()
-                }
-            }
-        }
-
-        return cell
-    }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! TableViewCell
+        let userInformation = items[indexPath.row]
         
         // 커플링 발생. 클래스와 클래스가 굉장히 강하게 결합되어있다. TableViewCell이 cell의 타입이 무엇인지 정확히 알고 있고 cell의 프로퍼티, 어떤 데이터가 들어가 있는지 너무 정확하게 알고있다. --> ViewCell이 여러개라면? 하나하나 다 추가해줘야 한다. 코드가 너무 길어진다.
         // 클래스와 클래스 사이는 '추상화'를 통해서 데이터가 오고 가야한다. --> 프로토콜을 하나 만들어서 싱위클래스 상속받게 만들어서 다른 외부 클래스는 프로토콜을 이용해서만 데이터 접근하게 만든다!
-        //따라서 메소드(여기선, releaseCoupling()) 를 통해 cell접근하도록 해결
-        return releaseCoupling(tbView: tableView, indexPathAtRow: indexPath)
+        //따라서 메소드(여기선, setModel()) 를 통해 cell접근하도록 해결
+        // 왜 TableViewCell.swift에 setModel()을 구현하는가? -> 단일책임의 원칙. 테이블뷰셀의 레이블의 데이터 관련 책임은 테이블뷰셀에 있으므로
+        
+        cell.setModel(tbView: tableView, userInfo: userInformation)
+        return cell
     }
     
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
