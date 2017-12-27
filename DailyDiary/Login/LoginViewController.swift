@@ -94,24 +94,25 @@ extension LoginViewController: UITableViewDataSource{
         cell.userNameLabel.text = items[indexPathAtRow.row].username
         cell.phoneLabel.text = items[indexPathAtRow.row].phone
         
-        //이미지 url
-        let url: URL? = URL(string: items[indexPathAtRow.row].picture)
-        //url에서 가져온 데이터!!
-        let picData = try? Data(contentsOf: url!)
-        let image: UIImage? = UIImage(data: picData!)
-        
-        // cell.pictureView.af_setImage(withURL: url!)
-        
-        let radius: CGFloat = 50.0
-        let size = CGSize(width: 100.0, height: 100.0)
-        
-        let aspectScaledToFitImage = image?.af_imageAspectScaled(toFit: size)
-        let roundedImage = aspectScaledToFitImage?.af_imageRounded(withCornerRadius: radius)
-        
-        cell.pictureView.image = roundedImage?.af_imageRoundedIntoCircle()
-        
+        //이미지 url를 옵셔널 바인딩으로 cell에 이미지 띄운다
+        if let url = URL(string: items[indexPathAtRow.row].picture){
+            //url에서 가져온 데이터!!
+            if let picData = try? Data(contentsOf: url){
+                if let image = UIImage(data: picData){
+                    let radius: CGFloat = 50.0
+                    let size = CGSize(width: 100.0, height: 100.0)
+                    
+                    let aspectScaledToFitImage = image.af_imageAspectScaled(toFit: size)
+                    let roundedImage = aspectScaledToFitImage.af_imageRounded(withCornerRadius: radius)
+                    
+                    cell.pictureView.image = roundedImage.af_imageRoundedIntoCircle()
+                }
+            }
+        }
+
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
