@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		98719D7D1FF3CD4C0097753B /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98719D7C1FF3CD4C0097753B /* detailViewController.swift */; };
+		98719D7D1FF3CD4C0097753B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98719D7C1FF3CD4C0097753B /* DetailViewController.swift */; };
 		988C2CBD1FCA898900BA8032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C2CBC1FCA898900BA8032 /* AppDelegate.swift */; };
 		988C2CC41FCA898900BA8032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC31FCA898900BA8032 /* Assets.xcassets */; };
 		988C2CC71FCA898900BA8032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */; };
@@ -58,7 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		98719D7C1FF3CD4C0097753B /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
+		98719D7C1FF3CD4C0097753B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		988C2CB91FCA898900BA8032 /* DailyDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		988C2CBC1FCA898900BA8032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		988C2CC31FCA898900BA8032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				988C2CBC1FCA898900BA8032 /* AppDelegate.swift */,
 				98C366B61FE6B59D007F04BE /* ProfileCell.swift */,
 				98C366B21FE6AD1C007F04BE /* Main.storyboard */,
-				98719D7C1FF3CD4C0097753B /* detailViewController.swift */,
+				98719D7C1FF3CD4C0097753B /* DetailViewController.swift */,
 				988C2CC31FCA898900BA8032 /* Assets.xcassets */,
 				988C2CC51FCA898900BA8032 /* LaunchScreen.storyboard */,
 				988C2CC81FCA898900BA8032 /* Info.plist */,
@@ -306,7 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98C366B71FE6B59D007F04BE /* ProfileCell.swift in Sources */,
-				98719D7D1FF3CD4C0097753B /* detailViewController.swift in Sources */,
+				98719D7D1FF3CD4C0097753B /* DetailViewController.swift in Sources */,
 				988C2CEE1FCA8ECA00BA8032 /* ProfileViewController.swift in Sources */,
 				988C2CBD1FCA898900BA8032 /* AppDelegate.swift in Sources */,
 			);
