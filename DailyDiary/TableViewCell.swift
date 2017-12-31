@@ -42,10 +42,10 @@ class TableViewCell: UITableViewCell{
     @IBOutlet var userNameLabel: UILabel!
     
     @IBOutlet weak var phoneLabel: UILabel!
-  
+    
     @IBOutlet weak var pictureView: UIImageView!
     
- 
+    
     // TableView와 TableViewCell간의 강한 커플링 문제 해결
     func setModel(tbView: UITableView, userInfo: ProfileList){
         userNameLabel.text = userInfo.username
@@ -68,8 +68,6 @@ class TableViewCell: UITableViewCell{
         }
         
     }
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
