@@ -37,7 +37,7 @@ class ProfileList {
 
 
 
-class TableViewCell: UITableViewCell{
+class ProfileCell: UITableViewCell{
     //picture
     @IBOutlet var userNameLabel: UILabel!
     
@@ -45,11 +45,13 @@ class TableViewCell: UITableViewCell{
     
     @IBOutlet weak var pictureView: UIImageView!
     
+    @IBOutlet weak var deleteButton: UIButton!
     
     // TableView와 TableViewCell간의 강한 커플링 문제 해결
-    func setModel(tbView: UITableView, userInfo: ProfileList){
+    func setModel(userInfo: ProfileList, tag: Int){
         userNameLabel.text = userInfo.username
         phoneLabel.text = userInfo.phone
+        deleteButton.tag = tag
         
         //이미지 url를 옵셔널 바인딩으로 cell에 이미지 띄운다
         if let url = URL(string: userInfo.picture){

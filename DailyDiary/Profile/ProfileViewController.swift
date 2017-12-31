@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import AlamofireImage
 
-class LoginViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     //json파일을 담을 배열
     var items: [ProfileList] = []
@@ -31,35 +31,42 @@ class LoginViewController: UIViewController {
 //    }
 
     @IBAction func addButtonTapped(_ sender: Any) {
-        Alamofire.request("https://randomuser.me/api/", method: .get)
-            .validate().responseJSON(completionHandler: {
-                ///// weak self : viewController를 참조하여도 ARC 카운트 1 증가시키지 않겠다!
-                [weak self] jsonProfile in
-                
-                switch jsonProfile.result{
+        DispatchQueue.global().async {
+            Alamofire.request("https://randomuser.me/api/", method: .get)
+                .validate().responseJSON(completionHandler: {
+                    ///// weak self : viewController를 참조하여도 ARC 카운트 1 증가시키지 않겠다!
+                    [weak self] jsonProfile in
                     
-                case .success(let value):
-                    let json = JSON(value)
-                    let p = ProfileList(jsonProfile: json)
-                    self!.items.append(p)
-                    
-                    print("case success")
-                    
-                    
-                    // 코드 -> 쓰레드로 연결을 큐 방식으로!
-                    // 쓰레드가 Queue(빨대)에 실행시킬 코드(물컵)를 넣는다
-                    // 왜 이 코드블럭을 UI쓰레드가 아니라 백그라운드 쓰레드로 넘기는가? main에서 쓰레드 부하를 줄이기 위해!
-                    DispatchQueue.main.async {
-                        self!.tableView.reloadData()
+                    switch jsonProfile.result{
+                        
+                    case .success(let value):
+                        let json = JSON(value)
+                        let p = ProfileList(jsonProfile: json)
+                        self!.items.append(p)
+                        
+                        print("case success")
+                        
+                        
+                        // 코드 -> 쓰레드로 연결을 큐 방식으로!
+                        // 쓰레드가 Queue(빨대)에 실행시킬 코드(물컵)를 넣는다
+                        // 왜 이 코드블럭을 UI쓰레드가 아니라 백그라운드 쓰레드로 넘기는가? main에서 쓰레드 부하를 줄이기 위해!
+                        DispatchQueue.main.async {
+                            self!.tableView.reloadData()
+                        }
+                        
+                        print(json)
+                        
+                    case .failure(let error):
+                        print(error)
                     }
-                    
-                    print(json)
-                    
-                case .failure(let error):
-                    print(error)
-                }
-            })
-        
+                })
+        }
+    }
+    
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        items.remove(at: sender.tag)
+        tableView.reloadData()
     }
     
     
@@ -81,7 +88,7 @@ class LoginViewController: UIViewController {
 //    }
 //}
 
-extension LoginViewController: UITableViewDataSource{
+extension ProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -89,7 +96,7 @@ extension LoginViewController: UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! ProfileCell
         let userInformation = items[indexPath.row]
         
         // 커플링 발생. 클래스와 클래스가 굉장히 강하게 결합되어있다. TableViewCell이 cell의 타입이 무엇인지 정확히 알고 있고 cell의 프로퍼티, 어떤 데이터가 들어가 있는지 너무 정확하게 알고있다. --> ViewCell이 여러개라면? 하나하나 다 추가해줘야 한다. 코드가 너무 길어진다.
@@ -97,16 +104,17 @@ extension LoginViewController: UITableViewDataSource{
         //따라서 메소드(여기선, setModel()) 를 통해 cell접근하도록 해결
         // 왜 TableViewCell.swift에 setModel()을 구현하는가? -> 단일책임의 원칙. 테이블뷰셀의 레이블의 데이터 관련 책임은 테이블뷰셀에 있으므로
         
-        cell.setModel(tbView: tableView, userInfo: userInformation)
+        cell.setModel(userInfo: userInformation, tag: indexPath.row)
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.delete {
-//            items.remove(at: indexPath.row) //데이터 삭제
-//            //테이블에서 row 삭제
-//            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-//        }
-//    }
-
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            items.remove(at: indexPath.row) // 데이터 삭제
+            
+            // 테이블에서 row 삭제
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
+    }
+    
 }
