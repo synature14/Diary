@@ -1,1 +1,2 @@
 # Diary
+Using Alamofire, AlamofireImage
