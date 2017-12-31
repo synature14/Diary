@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ProfileList {
+class Profile {
     var username: String = ""
     var phone: String = ""
     var id: String = ""
@@ -48,7 +48,7 @@ class ProfileCell: UITableViewCell{
     @IBOutlet weak var deleteButton: UIButton!
     
     // TableView와 TableViewCell간의 강한 커플링 문제 해결
-    func setModel(userInfo: ProfileList, tag: Int){
+    func setModel(userInfo: Profile, tag: Int){
         userNameLabel.text = userInfo.username
         phoneLabel.text = userInfo.phone
         deleteButton.tag = tag

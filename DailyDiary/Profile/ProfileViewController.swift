@@ -14,7 +14,7 @@ import AlamofireImage
 class ProfileViewController: UIViewController {
     
     //json파일을 담을 배열
-    var items: [ProfileList] = []
+    var items: [Profile] = []
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
                         
                     case .success(let value):
                         let json = JSON(value)
-                        let p = ProfileList(jsonProfile: json)
+                        let p = Profile(jsonProfile: json)
                         self!.items.append(p)
                         
                         print("case success")
@@ -81,19 +81,25 @@ class ProfileViewController: UIViewController {
 
 }
 
-
-//extension LoginViewController: UITableViewDelegate  {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        selectedIndexPath = indexPath
-//    }
-//}
+// 셀이 클릭되었다 등 동작에 관한 것
+extension ProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "DetailProfile")
+        if let profileVC = vc as? DetailViewController {
+            profileVC.setModel(items[indexPath.row])
+        }
+        
+        present(vc, animated: true, completion: nil)
+    }
+}
 
 extension ProfileViewController: UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell") as! ProfileCell
@@ -107,14 +113,4 @@ extension ProfileViewController: UITableViewDataSource{
         cell.setModel(userInfo: userInformation, tag: indexPath.row)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
-        if editingStyle == UITableViewCellEditingStyle.delete {
-            items.remove(at: indexPath.row) // 데이터 삭제
-            
-            // 테이블에서 row 삭제
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        }
-    }
-    
 }
