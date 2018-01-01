@@ -30,15 +30,6 @@ class Profile {
     }
 }
 
-//protocol JsonParseAble(profile: ProfileList){
-//
-//    userNameLabel.text = profile.name
-//    phoneLabel.text = profile.phone
-//    idLabel.text = profile.id
-//
-//}
-
-
 
 class ProfileCell: UITableViewCell{
     @IBOutlet var userNameLabel: UILabel!
