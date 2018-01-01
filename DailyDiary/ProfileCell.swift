@@ -1,14 +1,15 @@
 //
-//  TableViewCell.swift
+//  ProfileCell.swift
 //  DailyDiary
 //
 //  Created by sutie on 2017. 12. 17..
 //  Copyright © 2017년 sutie. All rights reserved.
-//
+//  데이터를 보여주는 역할 (셀 자체는
 
 import UIKit
 import SwiftyJSON
 
+// Profile 클래스가 DTO/ model
 class Profile {
     var username: String = ""
     var phone: String = ""
@@ -16,6 +17,7 @@ class Profile {
     var picture: String = ""
     var gender: String = ""
     var location: String = ""
+    var cachedImage: UIImage?
     
     init(jsonProfile: JSON) {
         username = jsonProfile["results"][0]["login"]["username"].rawString()!
@@ -24,6 +26,7 @@ class Profile {
         picture = jsonProfile["results"][0]["picture"]["medium"].rawString()!
         gender = jsonProfile["results"][0]["gender"].rawString()!
         location = jsonProfile["results"][0]["location"]["state"].rawString()!
+        
     }
 }
 
@@ -65,6 +68,8 @@ class ProfileCell: UITableViewCell{
                     let roundedImage = aspectScaledToFitImage.af_imageRounded(withCornerRadius: radius)
                     
                     pictureView.image = roundedImage.af_imageRoundedIntoCircle()
+                    userInfo.cachedImage = pictureView.image    //프로필 이미지 캐싱
+                    
                 }
             }
         }

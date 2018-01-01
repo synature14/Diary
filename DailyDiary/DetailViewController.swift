@@ -10,8 +10,15 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBOutlet weak var IDLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    @IBOutlet weak var profileImage: UIImageView!
     
     var model: Profile?
 
@@ -25,7 +32,8 @@ class DetailViewController: UIViewController {
     }
     
     private func setupViews() {
-        genderLabel.text = model?.gender
-        locationLabel.text = model?.location
+        IDLabel.text = model?.id
+        phoneLabel.text = model?.phone
+        profileImage.image = model?.cachedImage
     }
 }

@@ -18,10 +18,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    @IBAction func unwindProfile(_ sender: UIStoryboardSegue){
-        print("this is unwinding")
-    }
-
     
     @IBAction func addButtonTapped(_ sender: Any) {
         DispatchQueue.global().async {
@@ -89,6 +85,7 @@ extension ProfileViewController: UITableViewDelegate {
         let vc = sb.instantiateViewController(withIdentifier: "DetailProfile")
         if let profileVC = vc as? DetailViewController {
             profileVC.setModel(items[indexPath.row])
+           
         }
     
         present(vc, animated: true, completion: nil)
