@@ -18,18 +18,11 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-//    func requestImage(path: String, completionHandler: @escaping (Image) -> Void){
-//        Alamofire.request("\(path)").responseImage(imageScale: 1.5, inflateResponseImage: false, completionHandler: {response in
-//            guard let image = response.result.value else{
-//                print(response.result)
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                completionHandler(image)
-//            }
-//        })
-//    }
+    @IBAction func unwindProfile(_ sender: UIStoryboardSegue){
+        print("this is unwinding")
+    }
 
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         DispatchQueue.global().async {
             Alamofire.request("https://randomuser.me/api/", method: .get)
@@ -80,19 +73,27 @@ class ProfileViewController: UIViewController {
     }
 
 }
-
+////////////////////////////////////////세그웨이 공부하기!!!
+// 뷰컨트롤러 끼리의 데이터 전달
+// observer
 // 셀이 클릭되었다 등 동작에 관한 것
 extension ProfileViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //셀 선택시 체크마크
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DetailProfile")
         if let profileVC = vc as? DetailViewController {
             profileVC.setModel(items[indexPath.row])
         }
-        
+    
         present(vc, animated: true, completion: nil)
     }
+
 }
 
 extension ProfileViewController: UITableViewDataSource{
