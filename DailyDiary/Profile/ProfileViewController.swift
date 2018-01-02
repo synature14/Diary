@@ -77,9 +77,9 @@ extension ProfileViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //셀 선택시 체크마크
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
+//        //셀 선택시 체크마크
+//        let cell = tableView.cellForRow(at: indexPath)
+//        cell?.accessoryType = .checkmark
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DetailProfile")
