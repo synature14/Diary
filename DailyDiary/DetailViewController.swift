@@ -16,8 +16,9 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var IDLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
-    
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     var model: Profile?
 
@@ -33,6 +34,15 @@ class DetailViewController: UIViewController {
     private func setupViews() {
         IDLabel.text = model?.id
         phoneLabel.text = model?.phone
+        genderLabel.text = model?.gender
+        emailLabel.text = model?.email
+        
+        if genderLabel.text == "female" {
+            genderLabel.textColor = UIColor(red: 0.7, green: 0.0, blue: 0.1, alpha: 1)
+        } else {
+            genderLabel.textColor = UIColor(red: 0.1, green: 0.2, blue: 0.7, alpha: 1)
+        }
+        
         
         if let cache = model?.cachedImage {
             profileImage.image = cache
