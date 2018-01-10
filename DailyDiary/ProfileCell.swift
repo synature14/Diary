@@ -9,26 +9,29 @@
 import UIKit
 import SwiftyJSON
 
+
 // Profile 클래스가 DTO/ model
-class Profile {
-    var username: String = ""
-    var phone: String = ""
-    var id: String = ""
-    var gender: String = ""
-    var location: String = ""
-    var email: String = ""
+class Profile{
+    
+    var username: String
+    var phone: String
+    var id: String
+    var gender: String
+    var location: String
+    var email: String
     var cachedImage: UIImage?
     var urlOfImage: String
     
-    init(jsonProfile: JSON) {
-        username = jsonProfile["results"][0]["login"]["username"].rawString()!
-        phone = jsonProfile["results"][0]["phone"].rawString()!
-        id = jsonProfile["results"][0]["id"]["value"].rawString()!
-        urlOfImage = jsonProfile["results"][0]["picture"]["medium"].rawString()!
-        gender = jsonProfile["results"][0]["gender"].rawString()!
-        location = jsonProfile["results"][0]["location"]["state"].rawString()!
-        email = jsonProfile["results"][0]["email"].rawString()!
-        
+    
+    init(jsonProfile: JSON, tag: Int) {
+        username = jsonProfile["results"][tag]["login"]["username"].rawString()!
+        phone = jsonProfile["results"][tag]["phone"].rawString()!
+        id = jsonProfile["results"][tag]["id"]["value"].rawString()!
+        urlOfImage = jsonProfile["results"][tag]["picture"]["medium"].rawString()!
+        gender = jsonProfile["results"][tag]["gender"].rawString()!
+        location = jsonProfile["results"][tag]["location"]["state"].rawString()!
+        email = jsonProfile["results"][tag]["email"].rawString()!
+
     }
 }
 
